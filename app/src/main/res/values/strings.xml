@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">My University</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_account">Account</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="Math">Математика</string>
+    <string name="Rus">Русский язык</string>
+    <string name="Subject">Выберите предмет</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_choose_subject">Choose subject</string>
+    <string name="text_welcome">"Welcome, "</string>
+    <string name="text_go_to">"Go to "</string>
+    <string name="text_your_data_not_filled">Your data about your subjects scores not filled.</string>
+    <string name="text_settings">Settings</string>
+    <string name="choose_city">Choose city of study</string>
+    <string name="text_min_scores">"Minimum scores for entrance: "</string>
+    <string name="title_university">University</string>
+    <string name="text_logout">Logout</string>
+    <string name="text_login">Login</string>
+    <string name="text_password">Password</string>
+    <string name="text_no_account">Have not account?</string>
+    <string name="account">Create account</string>
+    <string name="have_account">Already have account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="registration_error">Error input. All fields must be filled</string>
+    <string name="password_error">Error sign-in. Wrong password</string>
+    <string name="login_not_found_error">Error login not found</string>
+    <string name="login_exist">Student with this login is exist. Please, use other login name</string>
+    <string name="text_nocity">City not chosen</string>
+    <string name="text_noscores">There is no suitable university for the selected city with your scores</string>
+</resources>

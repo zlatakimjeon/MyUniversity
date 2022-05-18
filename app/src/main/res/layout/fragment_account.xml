@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.account.AccountFragment">
+
+    <it.sephiroth.android.library.numberpicker.NumberPicker
+        android:id="@+id/pickerSubject"
+        style="@style/NumberPicker.Filled"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickerRus"
+        app:picker_max="100"
+        app:picker_min="0"
+        app:picker_orientation="vertical"
+        app:picker_stepSize="1"
+        app:picker_tracker="exponential" />
+
+    <Button
+        android:id="@+id/buttonSubject"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/Subject"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/pickerSubject"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRus" />
+
+    <it.sephiroth.android.library.numberpicker.NumberPicker
+        android:id="@+id/pickerRus"
+        style="@style/NumberPicker.Filled"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickerMath"
+        app:picker_max="100"
+        app:picker_min="0"
+        app:picker_orientation="vertical"
+        app:picker_stepSize="1"
+        app:picker_tracker="exponential" />
+
+    <Button
+        android:id="@+id/buttonRus"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        app:elevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/pickerRus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMath" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/surname" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAvatar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageAvatar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="194dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="194dp"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMath"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        app:elevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/pickerMath"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputSurname" />
+
+    <it.sephiroth.android.library.numberpicker.NumberPicker
+        android:id="@+id/pickerMath"
+        style="@style/NumberPicker.Filled"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="16dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputSurname"
+        app:picker_max="100"
+        app:picker_min="0"
+        app:picker_orientation="vertical"
+        app:picker_stepSize="1"
+        app:picker_tracker="exponential" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/text_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSubject" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

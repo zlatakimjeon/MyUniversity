@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мой ВУЗ</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Домашняя</string>
+    <string name="title_account">Аккаунт</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="Math">Математика</string>
+    <string name="Rus">Русский язык</string>
+    <string name="Subject">Выберите предмет</string>
+    <string name="cancel">Отмена</string>
+    <string name="title_choose_subject">Выберите предмет</string>
+    <string name="text_welcome">"Добро пожаловать, "</string>
+    <string name="text_go_to">"Перейдите в "</string>
+    <string name="text_your_data_not_filled">Ваши данные о сданных экзаменах не заполнены.</string>
+    <string name="text_settings">Настройки</string>
+    <string name="choose_city">Выберите город поступления</string>
+    <string name="text_min_scores">"Минимальные баллы для поступления: "</string>
+    <string name="title_university">University</string>
+    <string name="text_logout">Выход</string>
+    <string name="text_login">Логин</string>
+    <string name="text_password">Пароль</string>
+    <string name="text_no_account">Не зарегистрирован?</string>
+    <string name="account">Зарегистрироваться</string>
+    <string name="have_account">Уже есть аккаунт?</string>
+    <string name="sign_in">Войти</string>
+    <string name="registration_error">Ошибка ввода. Все поля должны быть заполнены</string>
+    <string name="password_error">Ошибка авторизации. Невероный пароль</string>
+    <string name="login_not_found_error">Ошибка. Пользователь с таким логином не найден</string>
+    <string name="login_exist">Студент с этим именем уже зарегистрирован. Пожалуйста, используйте другой логин</string>
+    <string name="text_nocity">Город не выбран</string>
+    <string name="text_noscores">Для выбранного города с вашими баллами нет подходящего ВУЗа</string>
+</resources>
