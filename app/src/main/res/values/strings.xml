@@ -30,4 +30,5 @@
     <string name="login_exist">Student with this login is exist. Please, use other login name</string>
     <string name="text_nocity">City not chosen</string>
     <string name="text_noscores">There is no suitable university for the selected city with your scores</string>
+    <string name="select_picture_file">SELECT_PICTURE_FILE</string>
 </resources>

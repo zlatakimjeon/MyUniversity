@@ -1,7 +1,13 @@
 package com.aplication.myuniversity.ui.account;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,6 +17,7 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.aplication.myuniversity.LoginActivity;
@@ -26,7 +33,9 @@ import com.aplication.myuniversity.repository.StudentRepository;
 import com.aplication.myuniversity.repository.StudentSubjectRepository;
 import com.aplication.myuniversity.repository.SubjectRepository;
 import com.aplication.myuniversity.room.Const;
+import com.aplication.myuniversity.utils.PermissionUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 import it.sephiroth.android.library.numberpicker.NumberPicker;
@@ -50,16 +59,17 @@ public class AccountFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         init(); // инициализируем переменные
         initViews(); // инициализируем представления
         updateViews(); // обновляем представления
-
-
         return root;
     }
 
     private void initViews() {
+        binding.imageAvatar.setOnClickListener(view -> {
+            chooseAvatar();
+        });
+
         binding.editTextName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -163,7 +173,62 @@ public class AccountFragment extends Fragment {
 
             }
         });
+    }
+
+    private void chooseAvatar() {
+        PermissionUtils.requestStoragePermissions(mainActivity); // запрашиваем доступ к файлам
+        final Intent getContentIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getContentIntent.setType("*/*");
+        getContentIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);
+        getContentIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        Intent intent = Intent.createChooser(getContentIntent, getString(R.string.select_picture_file));
+        mainActivity.getChooseFileLauncher().launch(intent); // запускаем выбор фото
+        startThread(); // запускаем поток проверки выбора картинки
+    }
+
+    private void startThread() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        sleep(1000);
+                        if (mainActivity.isReady()) {
+                                Bitmap finalBitmap = getImageBitmap(mainActivity.getImageUri());
+                                mainActivity.runOnUiThread(() -> {
+                                    binding.imageAvatar.setImageBitmap(finalBitmap); // назначаем картинку
+                                    student.setUri(mainActivity.getImageUri());
+                                    studentRepository.update(student); // обновляем в базе ссылка
+                                    mainActivity.nullImageUri(); // обнуляем ссылку на картинку
+                                });
+
+                            break;
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+    }
+
+    private Bitmap getImageBitmap(Uri imageUri) {
+        Bitmap bitmap = null;
+        ContentResolver contentResolver = mainActivity.getContentResolver();
+        try {
+            if (Build.VERSION.SDK_INT < 28) {
+                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri);
+            } else {
+                ImageDecoder.Source source = ImageDecoder.createSource(contentResolver, imageUri);
+                bitmap = ImageDecoder.decodeBitmap(source);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return bitmap;
+    }
 
     private void updateAllScores() {
         StudentSubject studentSubjectMath =
@@ -180,14 +245,14 @@ public class AccountFragment extends Fragment {
 
     private void showSubjectDialog() {
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(mainActivity);
-       // builderSingle.setIcon(R.drawable.ic_launcher);
+        // builderSingle.setIcon(R.drawable.ic_launcher);
         builderSingle.setTitle(R.string.choose_city);
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(mainActivity, android.R.layout.select_dialog_item);
 
         List<Subject> subjectList = subjectRepository.getSubjects();
 
-        for (int i = 2; i < subjectList.size(); i++ ) {
+        for (int i = 2; i < subjectList.size(); i++) {
             arrayAdapter.add(subjectList.get(i).getTitle());
         }
 
@@ -205,6 +270,8 @@ public class AccountFragment extends Fragment {
 
     private void updateViews() {
         student = studentRepository.get(preferences.getActiveStudentId());
+
+        binding.imageAvatar.setImageBitmap(getImageBitmap(student.getUri()));
 
         binding.editTextName.setText(student.getName()); // имя
         binding.editTextSurname.setText(student.getSurname()); // фамилия

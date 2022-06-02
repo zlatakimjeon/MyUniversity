@@ -31,4 +31,5 @@
     <string name="login_exist">Студент с этим именем уже зарегистрирован. Пожалуйста, используйте другой логин</string>
     <string name="text_nocity">Город не выбран</string>
     <string name="text_noscores">Для выбранного города с вашими баллами нет подходящего ВУЗа</string>
+    <string name="select_picture_file">SELECT_PICTURE_FILE</string>
 </resources>

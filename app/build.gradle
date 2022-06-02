@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation 'commons-io:commons-io:20030203.000550'
+    implementation 'com.github.abdularis:circularimageview:1.5'
     implementation 'it.sephiroth.android.library:number-sliding-picker:1.1.1'
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
